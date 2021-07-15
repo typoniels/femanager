@@ -2,6 +2,7 @@
 declare(strict_types = 1);
 namespace In2code\Femanager\Utility;
 
+use TYPO3\CMS\Backend\Template\DocumentTemplate;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
 use TYPO3\CMS\Fluid\View\StandaloneView;
@@ -22,7 +23,7 @@ class TemplateUtility extends AbstractUtility
      * @return string
      * @see getTemplateFolders()
      */
-    public static function getTemplateFolder($part = 'template')
+    public static function getTemplateFolder($part = DocumentTemplate::class)
     {
         $matches = self::getTemplateFolders($part);
         return !empty($matches) ? $matches[0] : '';
@@ -39,7 +40,7 @@ class TemplateUtility extends AbstractUtility
      *        will be returned. If TRUE all (possible) paths will be returned.
      * @return array
      */
-    public static function getTemplateFolders($part = 'template', $returnAllPaths = false)
+    public static function getTemplateFolders($part = DocumentTemplate::class, $returnAllPaths = false)
     {
         $templatePaths = [];
         $configuration = self::getConfigurationManager()
@@ -74,7 +75,7 @@ class TemplateUtility extends AbstractUtility
      * @param string $part "template", "partial", "layout"
      * @return string Filename/path
      */
-    public static function getTemplatePath($pathAndFilename, $part = 'template')
+    public static function getTemplatePath($pathAndFilename, $part = DocumentTemplate::class)
     {
         $matches = self::getTemplatePaths($pathAndFilename, $part);
         return !empty($matches) ? end($matches) : '';
@@ -89,7 +90,7 @@ class TemplateUtility extends AbstractUtility
      * @param string $part "template", "partial", "layout"
      * @return array All existing matches found
      */
-    public static function getTemplatePaths($pathAndFilename, $part = 'template')
+    public static function getTemplatePaths($pathAndFilename, $part = DocumentTemplate::class)
     {
         $pathAndFilenames = [];
         $absolutePaths = self::getTemplateFolders($part, true);

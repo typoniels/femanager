@@ -2,6 +2,7 @@
 declare(strict_types = 1);
 namespace In2code\Femanager\Utility;
 
+use TYPO3\CMS\Core\Http\ApplicationType;
 use TYPO3\CMS\Core\Utility\MathUtility;
 use TYPO3\CMS\Backend\Routing\UriBuilder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -77,7 +78,7 @@ class BackendUtility
     public static function getPluginOrModuleString(): string
     {
         $string = 'plugin';
-        if (TYPO3_MODE === 'BE') {
+        if (ApplicationType::fromRequest($GLOBALS['TYPO3_REQUEST'])->isBackend()) {
             $string = 'module';
         }
         return $string;

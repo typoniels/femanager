@@ -50,7 +50,7 @@ class TestingHelper
         if (!defined('TYPO3_REQUESTTYPE_INSTALL')) {
             define('TYPO3_REQUESTTYPE_INSTALL', '');
         }
-        if (!defined('TYPO3_MODE')) {
+        if (!defined('TYPO3')) {
             define('TYPO3_MODE', 'BE');
         }
         if (!defined('PATH_typo3')) {
