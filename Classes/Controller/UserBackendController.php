@@ -13,6 +13,7 @@ use In2code\Femanager\Utility\HashUtility;
 use In2code\Femanager\Utility\LocalizationUtility;
 use In2code\Femanager\Utility\UserUtility;
 use TYPO3\CMS\Backend\Routing\UriBuilder;
+use TYPO3\CMS\Core\Http\RequestFactory;
 use TYPO3\CMS\Core\Messaging\AbstractMessage;
 use TYPO3\CMS\Core\Site\SiteFinder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -229,10 +230,19 @@ class UserBackendController extends AbstractController
                 ]
             ]
         );
-        $report = [];
-        $result = GeneralUtility::getUrl((string)$url, 0, ['accept' => 'application/json'], $report);
-        if (!is_string($result)) {
-            $GLOBALS['BE_USER']->writelog(4, 0, 1, 0, 'femanager: Frontend request failed.', $report);
+        $response = GeneralUtility::makeInstance(RequestFactory::class)->request(
+            (string)$url,
+            'GET',
+            ['headers' => ['accept' => 'application/json']]
+        );
+        if ($response->getStatusCode() >= 300) {
+            $content = 'Status code: ' . $response->getStatusCode() . ' Reason: ' . $response->getReasonPhrase();
+            $GLOBALS['BE_USER']->writelog(4, 0, 1, 0, 'femanager: Frontend request failed.', $content);
+        } else {
+            $content = $response->getBody()->getContents();
+        }
+        if (!is_string($content)) {
+            $GLOBALS['BE_USER']->writelog(4, 0, 1, 0, 'femanager: Frontend request failed.', $content);
             // @todo
             $this->addFlashMessage(
                 LocalizationUtility::translate(
