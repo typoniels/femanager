@@ -4,6 +4,8 @@ declare(strict_types = 1);
 
 namespace In2code\Femanager\Finisher;
 
+use TYPO3\CMS\Core\Log\LogManager;
+use TYPO3\CMS\Core\Log\LogLevel;
 use TYPO3\CMS\Core\Http\RequestFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
@@ -71,7 +73,7 @@ class SendParametersFinisher extends AbstractFinisher implements FinisherInterfa
     protected function writeToDevelopmentLog()
     {
         if (!empty($this->configuration['debug'])) {
-            GeneralUtility::devLog('SendPost Values', 'femanager', 0, $this->getCurlSettings());
+            GeneralUtility::makeInstance(LogManager::class)->getLogger(__CLASS__)->log(LogLevel::INFO, 'SendPost Values', $this->getCurlSettings());
         }
     }
 

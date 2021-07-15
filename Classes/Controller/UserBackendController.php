@@ -177,7 +177,7 @@ class UserBackendController extends AbstractController
                 [$user->getUsername()]
             ),
             '',
-            \TYPO3\CMS\Core\Messaging\AbstractMessage::OK
+            AbstractMessage::OK
         );
         $this->redirect('listOpenUserConfirmations');
     }

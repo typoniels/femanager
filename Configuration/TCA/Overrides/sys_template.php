@@ -1,15 +1,16 @@
 <?php
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 defined('TYPO3_MODE') or die();
 
 /**
  * Static TypoScript
  */
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile(
+ExtensionManagementUtility::addStaticFile(
     'femanager',
     'Configuration/TypoScript/Main',
     'Main Settings'
 );
-\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addStaticFile(
+ExtensionManagementUtility::addStaticFile(
     'femanager',
     'Configuration/TypoScript/Layout',
     'Add Layout CSS'
