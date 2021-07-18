@@ -4,7 +4,6 @@ if (!defined('TYPO3_MODE')) {
 }
 
 call_user_func(function () {
-
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
         'femanager',
         'Pi1',
