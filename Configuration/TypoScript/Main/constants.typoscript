@@ -9,12 +9,10 @@ plugin.tx_femanager {
     # cat=plugin.tx_femanager/file; type=string; label= Path to template layouts (FE)
     layoutRootPath = EXT:femanager/Resources/Private/Layouts/
   }
-
   persistence {
     # cat=plugin.tx_femanager//a; type=int+; label= Default storage PID
-    storagePid =
+    storagePid = 
   }
-
   settings {
     # cat=plugin.tx_femanager//0100; type=text; label= Admin Name: Default admin name for all emails to the user
     adminName = Femanager
