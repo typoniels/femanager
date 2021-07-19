@@ -14,7 +14,6 @@ $EM_CONF[$_EXTKEY] = [
     'author_email' => 'info@in2code.de',
     'author_company' => 'in2code.de - Wir leben TYPO3',
     'state' => 'stable',
-    'createDirs' => '',
     'version' => '6.3.0',
     'constraints' => [
         'depends' => [
